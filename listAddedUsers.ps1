@@ -7,6 +7,6 @@ $Users = @(
 )
 
 foreach ($User in $Users) {
-    Get-ADUser -Identity $User -Properties Title |
-    Select-Object Name, SamAccountName, Title
+    Get-ADUser -Identity $User -Properties Description |
+    Select-Object Name, SamAccountName, Description
 }
