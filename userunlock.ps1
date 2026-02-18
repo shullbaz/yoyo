@@ -32,3 +32,7 @@ foreach ($User in $Users) {
     Unlock-ADAccount -Identity $User
     Write-Host "Unlocked account: $User"
 }
+
+# list users
+Get-ADUser -Filter { SamAccountName -in $Users } -Properties Title |
+Select-Object Name, SamAccountName, Title
