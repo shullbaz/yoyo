@@ -2,8 +2,11 @@ Import-Module GroupPolicy
 Import-Module ActiveDirectory
 
 $GPOName = "dada-core-gpo"
-$WallpaperPath = "C:\Windows\Web\Wallpaper\Windows\img0.jpg"
 $DomainDN = (Get-ADDomain).DistinguishedName
+$DomainName = (Get-ADDomain).DNSRoot
+$DCHostName = $env:COMPUTERNAME
+
+$WallpaperPath = "\\$DCHostName\sysvol\$DomainName\Policies\Wallpaper\image.jpg"
 
 if (Get-GPO -Name $GPOName -ErrorAction SilentlyContinue) {
     Remove-GPO -Name $GPOName -Confirm:$false
