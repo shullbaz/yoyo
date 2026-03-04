@@ -6,6 +6,8 @@ Import-Module GroupPolicy
 Import-Module ActiveDirectory
 
 $GPOName = "dada-core-gpo"
+$InstallPath = "C:\Sysinternals"
+
 
 # Validate GPO exists
 $GPO = Get-GPO -Name $GPOName -ErrorAction SilentlyContinue
@@ -60,8 +62,6 @@ Write-Host "Audit Policies Applied." -ForegroundColor Green
 # ============================================
 
 Write-Host "Configuring PowerShell Logging..." -ForegroundColor Cyan
-
-New-Item -Path $SysvolPSPath -ItemType Directory -Force | Out-Null
 
 # Script Block Logging
 Set-GPRegistryValue -Name $GPOName `
